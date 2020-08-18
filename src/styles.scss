@@ -7,3 +7,15 @@ $font-color: #fff!important;
     background-color: $background-color;
     color: $font-color;
 }
+
+body{
+    background-image: url("./assets/background-car.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.90;
+}
+
+.text-center{
+    text-align: center;
+}
