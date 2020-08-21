@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestLogin } from 'src/app/resources/models/RequestLogin';
+import { LoginService } from 'src/app/resources/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public requestLogin: RequestLogin;
 
-  ngOnInit() {
+  constructor(private loginService: LoginService) { }
+
+  ngOnInit(): void {
+    this.requestLogin = new RequestLogin();
+
   }
 
+  public doLogin(): void {
+    this.loginService.doLogin(this.requestLogin).subscribe(
+      success => {
+        console.log(success);
+      }, error => {
+        console.error(error);
+      });
+  }
 }
