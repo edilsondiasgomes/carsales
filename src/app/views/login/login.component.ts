@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequestLogin } from 'src/app/resources/models/RequestLogin';
+import { AlertService } from 'src/app/resources/services/alert.service';
 import { LoginService } from 'src/app/resources/services/login.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private router: Router) { }
+    private router: Router,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.requestLogin = new RequestLogin();
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['dashboard']),
           console.log(success);
       }, error => {
+        this.alertService.error('Usuário ou senha inválidos', 'Atenção');
         console.error(error);
       });
   }
